@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# chkb: change keyboard layout
+
+kb_file="$HOME/.config/kb"
+
+next_kb=$(head -n 1 $kb_file)
+
+setxkbmap $next_kb
+
+sed -i '1d' $kb_file
+
+echo $next_kb >> $kb_file
