@@ -27,7 +27,7 @@ int main (int argc, char* argv[])
   fclose (fp);
 
   if (argc == 1) {
-    printf ("%d\n", B2X(b));
+    printf ("%f\n", B2X((float)b));
     return 0;
   }
 
@@ -36,7 +36,7 @@ int main (int argc, char* argv[])
     return -1;
   }
   
-  db = X2B(atoi(argv[1]));
+  db = X2B(atof(argv[1]));
   
   if (argv[1][0] == '+' || argv[1][0] == '-')
     db += b;
