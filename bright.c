@@ -22,20 +22,20 @@
 #define B2X(B) (B*100/MAX_B)
 #define X2B(X) (X*MAX_B/100)
 
+void die (void)
+{
+  perror (B_PATH);
+  exit (1);
+}
+
 int main (int argc, char* argv[])
 {
   FILE* fp;
   int b, db;
 
-  if ((fp = fopen (B_PATH, "r")) == NULL) {
-    perror (B_PATH);
-    return -1;
-  }
+  if ((fp = fopen (B_PATH, "r")) == NULL) die ();
 
-  if (fscanf (fp, "%d", &b) == EOF) {
-    perror (B_PATH);
-    return -1;
-  }
+  if (fscanf (fp, "%d", &b) == EOF) die ();
   
   fclose (fp);
 
@@ -44,10 +44,7 @@ int main (int argc, char* argv[])
     return 0;
   }
 
-  if ((fp = fopen (B_PATH, "w")) == NULL) {
-    perror (B_PATH);
-    return -1;
-  }
+  if ((fp = fopen (B_PATH, "w")) == NULL) die ();
   
   db = X2B(atof(argv[1]));
   
@@ -59,10 +56,7 @@ int main (int argc, char* argv[])
   else if (db < MIN_B)
     db = MIN_B;
       
-  if (fprintf (fp, "%d", db) < 0) {
-    perror (B_PATH);
-    return -1;
-  }
+  if (fprintf (fp, "%d", db) < 0) die ();
 
   fclose (fp);
   return 0;
