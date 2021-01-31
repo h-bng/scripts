@@ -56,8 +56,7 @@ int main (int argc, char* argv[])
   
   if (db > MAX_B)
     db = MAX_B;
-
-  if (db < MIN_B)
+  else if (db < MIN_B)
     db = MIN_B;
       
   if (fprintf (fp, "%d", db) < 0) {
